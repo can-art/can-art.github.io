@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>盛世华诞 · 举国同庆 —— 庆祝中华人民共和国成立七十七周年</title>
+<meta name="description" content="庆祝中华人民共和国成立七十七周年。愿山河无恙，国泰民安，盛世如你所愿。">
+<meta name="theme-color" content="#5c0d12">
+<link rel="preload" href="kai.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+  /* 自托管楷体（霞鹜文楷，SIL OFL 1.1），按本页用字做子集，仅 45KB。
+     放在字体栈首位，保证任何设备都能正确显示楷体。 */
+  @font-face{
+    font-family: "KaiTi Web";
+    src: url("kai.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  :root{
+    --kai: "KaiTi Web",
+           "KaiTi", "Kaiti SC", "STKaiti", "楷体", "楷体_GB2312",
+           "BiauKai", "DFKai-SB", "AR PL UKai CN",
+           "LXGW WenKai", "Songti SC", serif;
+    --gold: #f2d492;
+    --gold-deep: #c9a227;
+    --card-bg: rgba(28,6,10,.30);
+    --hair: rgba(255,255,255,.14);
+  }
+
+  *{ box-sizing: border-box; }
+
+  html{ background:#3d070b; }
+
+  body{
+    margin:0;
+    min-height:100svh;
+    padding: clamp(16px, 4vw, 56px) clamp(14px, 4vw, 40px);
+    display:grid;
+    place-items:center;
+    font-family: var(--kai);
+    color:#fff;
+    overflow-x:hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* 背景：天安门正面全景（两侧红旗），轻微虚化 */
+  .bg{
+    position:fixed;
+    inset:-6vmax;                 /* 外扩，避免虚化后边缘露白 */
+    z-index:-2;
+    background-image: url("bg.jpg");                                   /* 回退 */
+    background-image: image-set(url("bg.webp") type("image/webp"),
+                                url("bg.jpg")  type("image/jpeg"));    /* 优先 WebP */
+    background-position: center 42%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: blur(5px) saturate(118%) brightness(.94);
+    transform: scale(1.03);
+  }
+
+  /* 红色薄纱：压暗背景，保证文字对比度 */
+  .veil{
+    position:fixed; inset:0; z-index:-1;
+    background:
+      radial-gradient(130% 100% at 50% 4%, rgba(150,22,28,.16), rgba(80,10,14,.46) 66%, rgba(40,4,7,.68) 100%),
+      linear-gradient(180deg, rgba(96,12,17,.18), rgba(46,5,8,.46));
+  }
+
+  /* 毛玻璃卡片 */
+  .card{
+    width:min(760px, 100%);
+    margin:auto;
+    padding: clamp(24px, 3.6vw, 44px) clamp(20px, 4vw, 50px);
+    border-radius: 26px;
+    background: var(--card-bg);
+    -webkit-backdrop-filter: blur(20px) saturate(155%);
+    backdrop-filter: blur(20px) saturate(155%);
+    border: 1px solid rgba(255,255,255,.20);
+    box-shadow:
+      0 26px 70px rgba(0,0,0,.46),
+      0 2px 8px rgba(0,0,0,.22),
+      inset 0 1px 0 rgba(255,255,255,.30);
+  }
+  /* 不支持 backdrop-filter 时给不透明底色，保证可读 */
+  @supports not ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))){
+    .card{ background: rgba(58,9,13,.66); }
+  }
+
+  /* —— 头部 —— */
+  .years{
+    display:inline-block;
+    font-size: clamp(12px, 1.4vw, 13px);
+    letter-spacing:.34em;
+    color: var(--gold);
+    border:1px solid rgba(242,212,146,.42);
+    border-radius:999px;
+    padding:.5em 1.15em .5em 1.45em;
+    margin-bottom: clamp(16px, 3vw, 24px);
+    background: rgba(242,212,146,.07);
+  }
+
+  h1{
+    margin:0;
+    font-size: clamp(28px, 5.2vw, 44px);
+    font-weight:400;
+    line-height:1.22;
+    letter-spacing:.06em;
+    background: linear-gradient(178deg, #fffdf6 18%, var(--gold) 58%, var(--gold-deep) 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    text-shadow: 0 2px 18px rgba(0,0,0,.28);
+  }
+
+  .sub{
+    margin: clamp(12px, 2.4vw, 18px) 0 0;
+    font-size: clamp(14px, 2.2vw, 17px);
+    letter-spacing:.16em;
+    color: rgba(255,255,255,.90);
+  }
+
+  .rule{
+    display:flex; align-items:center; justify-content:center; gap:12px;
+    margin: clamp(18px, 3vw, 26px) 0 clamp(4px, 1.2vw, 10px);
+    color: var(--gold);
+  }
+  .rule::before, .rule::after{
+    content:"";
+    height:1px; width:min(88px, 22%);
+    background: linear-gradient(90deg, transparent, rgba(242,212,146,.75));
+  }
+  .rule::after{ transform: scaleX(-1); }
+  .rule span{ font-size:12px; letter-spacing:.5em; text-indent:.5em; opacity:.92; }
+
+  /* —— 语录 —— */
+  .quotes{ list-style:none; margin:0; padding:0; }
+
+  .quotes li{
+    padding: clamp(11px, 1.9vw, 16px) 0;
+    border-top:1px solid var(--hair);
+  }
+  .quotes li:first-child{ border-top:0; padding-top: clamp(8px, 1.6vw, 12px); }
+
+  .quotes p{
+    margin:0;
+    font-size: clamp(16px, 1.95vw, 19px);
+    line-height:1.72;
+    letter-spacing:.03em;
+    text-shadow: 0 1px 10px rgba(0,0,0,.34);
+  }
+
+  .from{
+    display:block;
+    margin-top:.55em;
+    font-size: clamp(12px, 1.55vw, 14px);
+    letter-spacing:.14em;
+    color: var(--gold);
+    opacity:.88;
+  }
+
+  /* —— 页脚 —— */
+  .footer{
+    margin-top: clamp(20px, 3.2vw, 30px);
+    padding-top: clamp(14px, 2.2vw, 20px);
+    border-top:1px solid var(--hair);
+    text-align:center;
+    font-size: clamp(15px, 2.1vw, 18px);
+    letter-spacing:.22em;
+    color: var(--gold);
+  }
+
+  /* 版权 / 素材署名 */
+  .credit{
+    margin-top: clamp(18px, 3vw, 26px);
+    font-size:11.5px;
+    line-height:1.7;
+    letter-spacing:.04em;
+    color: rgba(255,255,255,.52);
+    text-align:center;
+  }
+  .credit a{ color: rgba(255,255,255,.68); text-decoration:none; border-bottom:1px solid rgba(255,255,255,.24); }
+  .credit a:hover{ color: var(--gold); }
+
+  /* 入场淡入 */
+  @media (prefers-reduced-motion: no-preference){
+    .card{ animation: rise .9s cubic-bezier(.2,.7,.3,1) both; }
+    @keyframes rise{
+      from{ opacity:0; transform: translateY(18px) scale(.985); }
+      to  { opacity:1; transform:none; }
+    }
+  }
+
+  @media (max-width: 480px){
+    .card{ border-radius:20px; }
+    .years{ letter-spacing:.22em; padding-left:1.1em; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="bg" aria-hidden="true"></div>
+  <div class="veil" aria-hidden="true"></div>
+
+  <main class="card">
+    <span class="years">1949 — 2026</span>
+
+    <h1>盛世华诞 · 举国同庆</h1>
+    <p class="sub">庆祝中华人民共和国成立七十七周年</p>
+
+    <div class="rule" aria-hidden="true"><span>★</span></div>
+
+    <ul class="quotes">
+      <li>
+        <p>“中国人民从此站起来了。”
+          <span class="from">毛泽东 · 一九四九年开国大典</span>
+        </p>
+      </li>
+      <li>
+        <p>“为中华之崛起而读书。”
+          <span class="from">周恩来</span>
+        </p>
+      </li>
+      <li>
+        <p>“我和我的祖国，一刻也不能分割。”</p>
+      </li>
+      <li>
+        <p>“如果信仰有颜色，那一定是中国红。”</p>
+      </li>
+      <li>
+        <p>“目光所至皆为华夏，五星闪耀皆为信仰。”</p>
+      </li>
+      <li>
+        <p>“愿以吾辈之青春，捍卫这盛世之中华。”</p>
+      </li>
+      <li>
+        <p>“此生无悔入华夏，来世还做中国人。”</p>
+      </li>
+      <li>
+        <p>“山河无恙，烟火寻常，盛世如你所愿。”</p>
+      </li>
+    </ul>
+
+    <p class="footer">祝愿伟大祖国繁荣昌盛 · 国泰民安</p>
+
+    <p class="credit">
+      背景图：<a href="https://commons.wikimedia.org/wiki/File:Front_view_of_Tiananmen_gate_from_north_end_of_Tiananmen_Square.jpg" target="_blank" rel="noopener">天安门城楼正面</a>
+      © Daniel Case，依 <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a> 使用
+    </p>
+  </main>
+
+</body>
+</html>

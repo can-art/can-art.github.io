@@ -1,35 +1,40 @@
 # can-art.github.io
 
-国庆主题静态页面，部署于 <https://can-art.github.io/>
+大耳狗（Cinnamoroll）应援页，部署于 <https://can-art.github.io/>
 
 ## 文件
 
 | 文件 | 说明 |
 |---|---|
-| `index.html` | 页面本体。纯静态 HTML + 内联 CSS，**无任何 JavaScript、无外部依赖** |
-| `bg.webp` | 背景图（2400×958，228 KB），天安门城楼正面全景 |
-| `bg.jpg` | 同上 JPEG 版（473 KB），供不支持 WebP 的浏览器回退 |
-| `kai.woff2` | 楷体字体子集（46 KB），霞鹜文楷，仅含本页用到的 220 个字符 |
-| `OFL.txt` | 上述字体的 SIL OFL 1.1 授权 |
+| `index.html` | 页面本体：标题、拍立得、六个理由、时间线、许愿池、引言 |
+| `style.css` | 全部样式：天空渐变、三层漂移云、卡片、时间线、入场动画、响应式 |
+| `app.js` | 交互：星点、鼠标视差、滚动渐入、飘心、喜欢计数、许愿云 |
+| `assets/cinnamoroll.png` | 主图（800×450），趴在云上的大耳狗 |
+| `fonts/zcool-kuaile.woff2` | 标题字体子集（约 29 KB，仅含本页用字） |
+| `fonts/quicksand.woff2` | 正文字体子集（约 19 KB，可变字重 400–700） |
+| `tools/build-fonts.sh` | 改文案后重新生成字体子集 |
+| `national-day/` | **旧版国庆主题页面存档**，访问 <https://can-art.github.io/national-day/> |
 
 ## 实现要点
 
-- **背景**：`position: fixed` 固定，`filter: blur(5px)` 轻微虚化，外层红色薄纱压暗以提升文字对比度
-- **毛玻璃**：卡片使用 `backdrop-filter: blur(20px) saturate(155%)`；不支持该属性的浏览器自动回退为半透明深色底
-- **字体**：自托管楷体子集置于字体栈首位，保证任何设备（含无楷体的 Android / Linux）都能正确显示楷体；系统楷体（Windows 楷体 / macOS STKaiti / Linux AR PL UKai CN）作为后备
-- **响应式**：字号与间距全部使用 `clamp()`，适配手机到桌面
+- **纯静态**：无构建步骤、无外部 CDN 依赖，字体自托管，离线打开也能完整显示
+- **云层**：三层 `radial-gradient` 椭圆 + `blur` + 无限 `translateX` 漂移，层间速度/方向不同形成纵深
+- **视差**：`pointermove` 记录指针位置，rAF 缓动写入 `translate`，与 CSS `transform` 动画互不冲突
+- **入场**：滚动时按 `getBoundingClientRect()` 判定，比 IntersectionObserver 更耐标签页节流；`<html class="js">` 兜底，脚本失效时内容照常可见
+- **无障碍**：支持 `prefers-reduced-motion`，系统开启减弱动效即关闭漂移与悬浮
+- **喜欢计数**：有 `/api/likes` 后端时走网络计数，纯静态部署（GitHub Pages）自动降级为 `localStorage` 本地计数
 
-## 改动文案后
+## 重新生成字体子集
 
-页面文字变了，字体子集必须重新生成，否则新字会回退到系统字体：
+页面文字变了要重跑，否则新字会回退到系统字体：
 
 ```bash
-/home/yc/dsh-browser/build-font.sh
+./tools/build-fonts.sh
 ```
 
-脚本会扫描 `index.html` 中所有可见字符，重新子集化 `kai.woff2`。
+脚本会扫描 `index.html` 与 `app.js` 中的全部字符，重新子集化两个 woff2。
 
-## 素材授权
+## 素材与授权
 
-- 背景图：[天安门城楼正面](https://commons.wikimedia.org/wiki/File:Front_view_of_Tiananmen_gate_from_north_end_of_Tiananmen_Square.jpg)，© Daniel Case，[CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
-- 字体：[霞鹜文楷 LXGW WenKai](https://github.com/lxgw/LxgwWenKai)，SIL OFL 1.1（授权已明确许可子集化用于网页字体分发）
+- 主图：© 2026 SANRIO，同人应援用途
+- 字体：[站酷快乐体 ZCOOL KuaiLe](https://github.com/google/fonts/tree/main/ofl/zcoolkuaile)、[Quicksand](https://github.com/google/fonts/tree/main/ofl/quicksand)，均为 SIL OFL 1.1

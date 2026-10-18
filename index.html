@@ -1,254 +1,157 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>盛世华诞 · 举国同庆 —— 庆祝中华人民共和国成立七十七周年</title>
-<meta name="description" content="庆祝中华人民共和国成立七十七周年。愿山河无恙，国泰民安，盛世如你所愿。">
-<meta name="theme-color" content="#5c0d12">
-<link rel="preload" href="kai.woff2" as="font" type="font/woff2" crossorigin>
-<style>
-  /* 自托管楷体（霞鹜文楷，SIL OFL 1.1），按本页用字做子集，仅 45KB。
-     放在字体栈首位，保证任何设备都能正确显示楷体。 */
-  @font-face{
-    font-family: "KaiTi Web";
-    src: url("kai.woff2") format("woff2");
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  :root{
-    --kai: "KaiTi Web",
-           "KaiTi", "Kaiti SC", "STKaiti", "楷体", "楷体_GB2312",
-           "BiauKai", "DFKai-SB", "AR PL UKai CN",
-           "LXGW WenKai", "Songti SC", serif;
-    --gold: #f2d492;
-    --gold-deep: #c9a227;
-    --card-bg: rgba(28,6,10,.30);
-    --hair: rgba(255,255,255,.14);
-  }
-
-  *{ box-sizing: border-box; }
-
-  html{ background:#3d070b; }
-
-  body{
-    margin:0;
-    min-height:100svh;
-    padding: clamp(16px, 4vw, 56px) clamp(14px, 4vw, 40px);
-    display:grid;
-    place-items:center;
-    font-family: var(--kai);
-    color:#fff;
-    overflow-x:hidden;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  /* 背景：天安门正面全景（两侧红旗），轻微虚化 */
-  .bg{
-    position:fixed;
-    inset:-6vmax;                 /* 外扩，避免虚化后边缘露白 */
-    z-index:-2;
-    background-image: url("bg.jpg");                                   /* 回退 */
-    background-image: image-set(url("bg.webp") type("image/webp"),
-                                url("bg.jpg")  type("image/jpeg"));    /* 优先 WebP */
-    background-position: center 42%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    filter: blur(5px) saturate(118%) brightness(.94);
-    transform: scale(1.03);
-  }
-
-  /* 红色薄纱：压暗背景，保证文字对比度 */
-  .veil{
-    position:fixed; inset:0; z-index:-1;
-    background:
-      radial-gradient(130% 100% at 50% 4%, rgba(150,22,28,.16), rgba(80,10,14,.46) 66%, rgba(40,4,7,.68) 100%),
-      linear-gradient(180deg, rgba(96,12,17,.18), rgba(46,5,8,.46));
-  }
-
-  /* 毛玻璃卡片 */
-  .card{
-    width:min(760px, 100%);
-    margin:auto;
-    padding: clamp(24px, 3.6vw, 44px) clamp(20px, 4vw, 50px);
-    border-radius: 26px;
-    background: var(--card-bg);
-    -webkit-backdrop-filter: blur(20px) saturate(155%);
-    backdrop-filter: blur(20px) saturate(155%);
-    border: 1px solid rgba(255,255,255,.20);
-    box-shadow:
-      0 26px 70px rgba(0,0,0,.46),
-      0 2px 8px rgba(0,0,0,.22),
-      inset 0 1px 0 rgba(255,255,255,.30);
-  }
-  /* 不支持 backdrop-filter 时给不透明底色，保证可读 */
-  @supports not ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))){
-    .card{ background: rgba(58,9,13,.66); }
-  }
-
-  /* —— 头部 —— */
-  .years{
-    display:inline-block;
-    font-size: clamp(12px, 1.4vw, 13px);
-    letter-spacing:.34em;
-    color: var(--gold);
-    border:1px solid rgba(242,212,146,.42);
-    border-radius:999px;
-    padding:.5em 1.15em .5em 1.45em;
-    margin-bottom: clamp(16px, 3vw, 24px);
-    background: rgba(242,212,146,.07);
-  }
-
-  h1{
-    margin:0;
-    font-size: clamp(28px, 5.2vw, 44px);
-    font-weight:400;
-    line-height:1.22;
-    letter-spacing:.06em;
-    background: linear-gradient(178deg, #fffdf6 18%, var(--gold) 58%, var(--gold-deep) 100%);
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-    text-shadow: 0 2px 18px rgba(0,0,0,.28);
-  }
-
-  .sub{
-    margin: clamp(12px, 2.4vw, 18px) 0 0;
-    font-size: clamp(14px, 2.2vw, 17px);
-    letter-spacing:.16em;
-    color: rgba(255,255,255,.90);
-  }
-
-  .rule{
-    display:flex; align-items:center; justify-content:center; gap:12px;
-    margin: clamp(18px, 3vw, 26px) 0 clamp(4px, 1.2vw, 10px);
-    color: var(--gold);
-  }
-  .rule::before, .rule::after{
-    content:"";
-    height:1px; width:min(88px, 22%);
-    background: linear-gradient(90deg, transparent, rgba(242,212,146,.75));
-  }
-  .rule::after{ transform: scaleX(-1); }
-  .rule span{ font-size:12px; letter-spacing:.5em; text-indent:.5em; opacity:.92; }
-
-  /* —— 语录 —— */
-  .quotes{ list-style:none; margin:0; padding:0; }
-
-  .quotes li{
-    padding: clamp(11px, 1.9vw, 16px) 0;
-    border-top:1px solid var(--hair);
-  }
-  .quotes li:first-child{ border-top:0; padding-top: clamp(8px, 1.6vw, 12px); }
-
-  .quotes p{
-    margin:0;
-    font-size: clamp(16px, 1.95vw, 19px);
-    line-height:1.72;
-    letter-spacing:.03em;
-    text-shadow: 0 1px 10px rgba(0,0,0,.34);
-  }
-
-  .from{
-    display:block;
-    margin-top:.55em;
-    font-size: clamp(12px, 1.55vw, 14px);
-    letter-spacing:.14em;
-    color: var(--gold);
-    opacity:.88;
-  }
-
-  /* —— 页脚 —— */
-  .footer{
-    margin-top: clamp(20px, 3.2vw, 30px);
-    padding-top: clamp(14px, 2.2vw, 20px);
-    border-top:1px solid var(--hair);
-    text-align:center;
-    font-size: clamp(15px, 2.1vw, 18px);
-    letter-spacing:.22em;
-    color: var(--gold);
-  }
-
-  /* 版权 / 素材署名 */
-  .credit{
-    margin-top: clamp(18px, 3vw, 26px);
-    font-size:11.5px;
-    line-height:1.7;
-    letter-spacing:.04em;
-    color: rgba(255,255,255,.52);
-    text-align:center;
-  }
-  .credit a{ color: rgba(255,255,255,.68); text-decoration:none; border-bottom:1px solid rgba(255,255,255,.24); }
-  .credit a:hover{ color: var(--gold); }
-
-  /* 入场淡入 */
-  @media (prefers-reduced-motion: no-preference){
-    .card{ animation: rise .9s cubic-bezier(.2,.7,.3,1) both; }
-    @keyframes rise{
-      from{ opacity:0; transform: translateY(18px) scale(.985); }
-      to  { opacity:1; transform:none; }
-    }
-  }
-
-  @media (max-width: 480px){
-    .card{ border-radius:20px; }
-    .years{ letter-spacing:.22em; padding-left:1.1em; }
-  }
-</style>
+<title>云端偏爱 · Cinnamoroll</title>
+<meta name="description" content="一整个天空的喜欢，都留给这只大耳朵的小狗。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="云端偏爱 · Cinnamoroll">
+<meta property="og:description" content="把一整片天空的温柔，都写给你。">
+<meta property="og:image" content="./assets/cinnamoroll.png">
+<meta name="theme-color" content="#dff0ff">
+<link rel="preload" href="./fonts/zcool-kuaile.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="./fonts/quicksand.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="./style.css">
+<script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
+<div class="sky" aria-hidden="true">
+  <div class="sun"></div>
+  <div class="clouds c1"></div>
+  <div class="clouds c2"></div>
+  <div class="clouds c3"></div>
+  <div class="sparkles"></div>
+</div>
 
-  <div class="bg" aria-hidden="true"></div>
-  <div class="veil" aria-hidden="true"></div>
+<nav class="nav">
+  <span class="brand"><span class="dot"></span> 云端偏爱</span>
+  <span class="nav-links">
+    <a href="#why">喜欢他</a>
+    <a href="#days">日子</a>
+    <a href="#wish">许愿</a>
+  </span>
+</nav>
 
-  <main class="card">
-    <span class="years">1949 — 2026</span>
-
-    <h1>盛世华诞 · 举国同庆</h1>
-    <p class="sub">庆祝中华人民共和国成立七十七周年</p>
-
-    <div class="rule" aria-hidden="true"><span>★</span></div>
-
-    <ul class="quotes">
-      <li>
-        <p>“中国人民从此站起来了。”
-          <span class="from">毛泽东 · 一九四九年开国大典</span>
-        </p>
-      </li>
-      <li>
-        <p>“为中华之崛起而读书。”
-          <span class="from">周恩来</span>
-        </p>
-      </li>
-      <li>
-        <p>“我和我的祖国，一刻也不能分割。”</p>
-      </li>
-      <li>
-        <p>“如果信仰有颜色，那一定是中国红。”</p>
-      </li>
-      <li>
-        <p>“目光所至皆为华夏，五星闪耀皆为信仰。”</p>
-      </li>
-      <li>
-        <p>“愿以吾辈之青春，捍卫这盛世之中华。”</p>
-      </li>
-      <li>
-        <p>“此生无悔入华夏，来世还做中国人。”</p>
-      </li>
-      <li>
-        <p>“山河无恙，烟火寻常，盛世如你所愿。”</p>
-      </li>
-    </ul>
-
-    <p class="footer">祝愿伟大祖国繁荣昌盛 · 国泰民安</p>
-
-    <p class="credit">
-      背景图：<a href="https://commons.wikimedia.org/wiki/File:Front_view_of_Tiananmen_gate_from_north_end_of_Tiananmen_Square.jpg" target="_blank" rel="noopener">天安门城楼正面</a>
-      © Daniel Case，依 <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a> 使用
+<main>
+  <header class="hero" id="top">
+    <p class="eyebrow">CINNAMOROLL · シナモロール</p>
+    <h1 class="title" data-parallax="14">
+      <span class="line">把一整片天空的温柔</span>
+      <span class="line accent">都写给你</span>
+    </h1>
+    <p class="lede">
+      你有一对像奶油卷一样的大耳朵，飞起来的时候，
+      整片云海都会让路。这是我写过最认真的一封情书 —— 写给一只小狗。
     </p>
-  </main>
 
+    <figure class="polaroid">
+      <div class="tape"></div>
+      <div class="photo">
+        <img src="./assets/cinnamoroll.png" alt="趴在云朵上的大耳狗，笑得很开心" width="800" height="450">
+        <div class="shine"></div>
+      </div>
+      <figcaption>今天也在云上，笑得像一颗糖</figcaption>
+    </figure>
+
+    <div class="hero-actions">
+      <button class="btn primary" id="likeBtn" type="button">
+        <span class="heart-ico">♥</span> 把喜欢送上去
+      </button>
+      <span class="like-count"><b id="likeNum">—</b> 次心动，正在云端飘着</span>
+    </div>
+
+    <div class="scroll-hint" aria-hidden="true"><span></span>向下，天空还有很多</div>
+  </header>
+
+  <section class="why" id="why">
+    <h2 class="section-title">喜欢他的 <em id="reasonCount">六</em> 个理由</h2>
+    <p class="section-sub">认真写的，不是凑数。</p>
+    <div class="cards">
+      <article class="card reveal">
+        <div class="ico-wrap"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 18h10a3.5 3.5 0 0 0 .4-6.98A5 5 0 0 0 7.6 9.6 3.5 3.5 0 0 0 6.5 18Z"/></svg></div>
+        <h3>耳朵是软的</h3>
+        <p>那对垂下来的大耳朵，风吹过的时候会轻轻晃，像刚出炉的肉桂卷。</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico-wrap"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 4 3.8 11.1l6.1 2.4 2.3 6.1L21 4Z"/><path d="M9.9 13.5 21 4"/></svg></div>
+        <h3>他真的会飞</h3>
+        <p>别人抬头看天，我抬头找他。云是他家，也是他带我去的远方。</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico-wrap"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.2"/><path d="M9 10.3v.6M15 10.3v.6"/><path d="M9.2 14.2c.8 1.1 1.7 1.6 2.8 1.6s2-.5 2.8-1.6"/></svg></div>
+        <h3>笑起来毫无保留</h3>
+        <p>眼睛弯成两道小弧线，笑得那么用力，好像下一秒就要奔过来抱住你。</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico-wrap"><svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><ellipse cx="12" cy="15.6" rx="4.6" ry="4"/><circle cx="6.6" cy="11.4" r="1.9"/><circle cx="10.2" cy="8.6" r="1.9"/><circle cx="14.4" cy="8.6" r="1.9"/><circle cx="18" cy="11.6" r="1.9"/></svg></div>
+        <h3>小小的、笨笨的</h3>
+        <p>尾巴短短一截，走路晃悠悠，却总想着替别人把麻烦扛走。</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico-wrap"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z"/><path d="M17.5 4.5v2M16.5 5.5h2"/></svg></div>
+        <h3>半夜也不会缺席</h3>
+        <p>睡不着的夜里，只要想到云上还有一只在替我看星星，就没那么难熬了。</p>
+      </article>
+      <article class="card reveal">
+        <div class="ico-wrap"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7.5-4.4-7.5-9.4A4.1 4.1 0 0 1 12 8a4.1 4.1 0 0 1 7.5 2.6C19.5 15.6 12 20 12 20Z"/></svg></div>
+        <h3>他把蓝色变成了心情</h3>
+        <p>以前蓝色只是蓝色，现在是我一抬头就想笑的那种颜色。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="days" id="days">
+    <h2 class="section-title">我们一起飘过的日子</h2>
+    <p class="section-sub">从今天起，每一天都值得记下来。</p>
+    <ol class="timeline">
+      <li class="reveal"><time>昨天</time><p>第一次认真看他笑了很久，然后决定要做一个只属于他的页面。</p></li>
+      <li class="reveal"><time>今天</time><p>把整片天都刷成了奶油蓝，装上云朵，写下这些字。</p></li>
+      <li class="reveal"><time>明天</time><p>想带他去更远的地方 —— 至少，去更多人的屏幕上。</p></li>
+      <li class="reveal"><time>很久以后</time><p>希望这个页面还在，而我还是会为了那对耳朵心动。</p></li>
+    </ol>
+  </section>
+
+  <section class="wish" id="wish">
+    <h2 class="section-title">许愿池</h2>
+    <p class="section-sub">点一下云，把话托给风。</p>
+    <div class="wish-box">
+      <button class="cloud-btn" id="cloudBtn" type="button" aria-label="点击云朵放飞心愿">
+        <svg class="cloud-svg" viewBox="0 0 240 130" aria-hidden="true">
+          <defs>
+            <linearGradient id="cg" x1="0.15" y1="0" x2="0.75" y2="1">
+              <stop offset="0" stop-color="#ffffff"/>
+              <stop offset="0.7" stop-color="#ffffff"/>
+              <stop offset="1" stop-color="#eaf5ff"/>
+            </linearGradient>
+          </defs>
+          <g fill="url(#cg)">
+            <circle cx="76" cy="78" r="33"/>
+            <circle cx="120" cy="62" r="42"/>
+            <circle cx="166" cy="78" r="31"/>
+            <rect x="42" y="72" width="158" height="42" rx="21"/>
+          </g>
+        </svg>
+        <span class="cloud-label">点我 · 放一朵云</span>
+      </button>
+      <div class="wish-meta">
+        <p class="wish-tip">已经被放飞的云：<b id="wishNum">0</b> 朵</p>
+        <p class="wish-note" id="wishNote">云会记得每一句话。</p>
+      </div>
+    </div>
+  </section>
+
+  <blockquote class="quote reveal">
+    <p>“如果温柔有形状，<br>那大概就是一只长着大耳朵、住在云上的小狗。”</p>
+  </blockquote>
+</main>
+
+<footer class="footer">
+  <div class="sign">写给大耳狗的一封信 · 2026</div>
+  <div class="foot-note">Made with 云、奶油和一点点的偏心 · <a class="foot-link" href="./national-day/">旧页面存档</a></div>
+</footer>
+
+<div class="cursor-hearts" id="cursorHearts" aria-hidden="true"></div>
+<script src="./app.js"></script>
 </body>
 </html>
