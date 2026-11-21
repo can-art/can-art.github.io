@@ -1,0 +1,3 @@
+/* Offline-safe font stack.
+   No remote webfont requests: use Inter when installed, then the system's
+   Chinese UI fonts. This keeps the deck fast and fully usable without network. */

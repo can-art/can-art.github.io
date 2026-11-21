@@ -1,0 +1,312 @@
+@font-face{
+  font-family:"ZCOOL KuaiLe";src:url("./fonts/zcool-kuaile.woff2") format("woff2");
+  font-weight:400;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:"Quicksand";src:url("./fonts/quicksand.woff2") format("woff2");
+  font-weight:400 700;font-style:normal;font-display:swap;
+}
+:root{
+  --sky-1:#dff0ff;
+  --sky-2:#bfe0fb;
+  --sky-3:#9fcef4;
+  --cream:#fffaf1;
+  --paper:#fffdf8;
+  --ink:#2c3a52;
+  --ink-soft:#5d7594;
+  --blue:#6aa9dd;
+  --blue-deep:#3f7fb5;
+  --pink:#ffb7c9;
+  --pink-deep:#ff96ae;
+  --shadow:0 18px 50px rgba(63,127,181,.18);
+  --radius:26px;
+  --font-cn:"ZCOOL KuaiLe","PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+  --font-ui:"Quicksand","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:var(--font-ui);
+  color:var(--ink);
+  background:linear-gradient(180deg,var(--sky-1) 0%,var(--sky-2) 38%,#e9f5ff 68%,var(--cream) 100%);
+  min-height:100vh;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
+  html{scroll-behavior:auto}
+}
+
+/* ---------- 天空背景 ---------- */
+.sky{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.sun{
+  position:absolute;top:-160px;right:8vw;width:520px;height:520px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.95),rgba(255,255,255,.35) 42%,transparent 68%);
+  filter:blur(6px);
+}
+/* 三层云，越远越淡，各自缓慢漂移 */
+.clouds.c1{
+  top:-6%;height:62%;opacity:.42;filter:blur(16px);animation-duration:140s;
+  background-image:
+    radial-gradient(ellipse 26% 17% at 8% 38%,#fff 0%,rgba(255,255,255,.85) 45%,transparent 74%),
+    radial-gradient(ellipse 20% 13% at 17% 50%,#fff 0%,rgba(255,255,255,.9) 48%,transparent 76%),
+    radial-gradient(ellipse 30% 19% at 30% 32%,#fff 0%,rgba(255,255,255,.8) 44%,transparent 74%),
+    radial-gradient(ellipse 22% 15% at 44% 48%,#fff 0%,rgba(255,255,255,.85) 46%,transparent 75%);
+}
+.clouds.c2{
+  top:18%;height:64%;opacity:.62;filter:blur(26px);animation-duration:200s;animation-direction:reverse;
+  background-image:
+    radial-gradient(ellipse 34% 22% at 12% 46%,#fff 0%,rgba(255,255,255,.9) 46%,transparent 76%),
+    radial-gradient(ellipse 26% 18% at 26% 36%,#fff 0%,rgba(255,255,255,.85) 48%,transparent 78%),
+    radial-gradient(ellipse 30% 20% at 40% 54%,#fff 0%,rgba(255,255,255,.88) 46%,transparent 76%);
+}
+.clouds.c3{
+  bottom:-10%;height:72%;opacity:.95;filter:blur(18px);animation-duration:170s;
+  background-image:
+    radial-gradient(ellipse 40% 26% at 6% 62%,#fff 0%,rgba(255,255,255,.95) 52%,transparent 80%),
+    radial-gradient(ellipse 30% 22% at 20% 54%,#fff 0%,rgba(255,255,255,.9) 50%,transparent 78%),
+    radial-gradient(ellipse 34% 24% at 36% 66%,#fff 0%,rgba(255,255,255,.92) 50%,transparent 78%);
+}
+@keyframes drift{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+.sparkles{position:absolute;inset:0}
+.sparkles i{
+  position:absolute;width:10px;height:10px;border-radius:50%;
+  background:radial-gradient(circle,#fff,rgba(255,255,255,0));
+  animation:twinkle 5s ease-in-out infinite;
+}
+@keyframes twinkle{0%,100%{opacity:.15;transform:scale(.6)}50%{opacity:.95;transform:scale(1.25)}}
+
+/* ---------- 导航 ---------- */
+.nav{
+  position:relative;z-index:5;display:flex;justify-content:space-between;align-items:center;
+  max-width:1180px;margin:0 auto;padding:26px 32px;
+  font-size:14px;letter-spacing:.04em;
+}
+.brand{display:flex;align-items:center;gap:9px;font-weight:700;color:var(--blue-deep)}
+.brand .dot{width:10px;height:10px;border-radius:50%;background:var(--pink-deep);box-shadow:0 0 0 4px rgba(255,151,174,.25)}
+.nav-links{display:flex;gap:26px}
+.nav-links a{color:var(--ink);opacity:.7;text-decoration:none;transition:.2s}
+.nav-links a:hover{opacity:1;color:var(--blue-deep)}
+
+/* ---------- 通用 ---------- */
+main{position:relative;z-index:2;max-width:1180px;margin:0 auto;padding:0 32px 60px}
+.section-title{
+  font-family:var(--font-cn);font-weight:400;font-size:clamp(26px,3.4vw,40px);
+  text-align:center;margin:0 0 10px;letter-spacing:.02em;
+}
+.section-title em{font-style:normal;color:var(--pink-deep)}
+.section-sub{text-align:center;color:#7890ad;margin:0 0 52px;font-size:15px}
+
+/* ---------- Hero ---------- */
+.hero{padding:52px 0 30px;text-align:center;position:relative}
+.eyebrow{
+  font-family:var(--font-ui);font-size:12px;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--blue-deep);opacity:.75;margin:0 0 22px;
+}
+.title{
+  font-family:var(--font-cn);font-weight:400;margin:0 0 24px;
+  font-size:clamp(38px,6.2vw,76px);line-height:1.16;letter-spacing:.01em;
+}
+.title .line{display:block}
+.title .accent{
+  background:linear-gradient(96deg,#5ea6e0,#8fb8e8 40%,#ff9db5 92%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.lede{
+  max-width:640px;margin:0 auto 54px;font-size:17px;line-height:1.95;color:#5a7290;
+  font-family:var(--font-ui);
+}
+
+/* 拍立得 */
+.polaroid{
+  position:relative;display:inline-block;margin:0 auto 46px;padding:18px 18px 0;
+  background:var(--paper);border-radius:6px;
+  box-shadow:0 30px 60px rgba(63,127,181,.22),0 2px 0 rgba(255,255,255,.9) inset;
+  transform:rotate(-1.6deg);
+  transition:transform .6s cubic-bezier(.2,.8,.2,1);
+  animation:bob 7s ease-in-out infinite;
+}
+.polaroid:hover{transform:rotate(0deg) scale(1.015)}
+@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -14px}}
+.polaroid .tape{
+  position:absolute;top:-14px;left:50%;translate:-50% 0;width:132px;height:34px;
+  background:linear-gradient(180deg,rgba(255,255,255,.72),rgba(255,255,255,.42));
+  border-left:1px dashed rgba(140,180,215,.35);border-right:1px dashed rgba(140,180,215,.35);
+  box-shadow:0 4px 10px rgba(63,127,181,.12);transform:rotate(-2deg);backdrop-filter:blur(2px);
+}
+.photo{position:relative;overflow:hidden;border-radius:3px;background:#eaf6ff;line-height:0}
+.photo img{width:min(680px,78vw);height:auto;display:block}
+.photo .shine{
+  position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.45) 45%,transparent 60%);
+  translate:-120% 0;animation:shine 7.5s ease-in-out infinite;
+}
+@keyframes shine{0%,55%{translate:-120% 0}75%,100%{translate:130% 0}}
+.polaroid figcaption{
+  font-family:var(--font-cn);font-size:15px;color:#7b8fa8;padding:16px 6px 18px;
+}
+
+/* 按钮 */
+.hero-actions{display:flex;flex-direction:column;align-items:center;gap:16px}
+.btn{
+  font-family:var(--font-ui);font-weight:700;font-size:16px;letter-spacing:.02em;
+  border:none;cursor:pointer;border-radius:999px;padding:16px 34px;
+  display:inline-flex;align-items:center;gap:10px;
+  transition:transform .18s ease,box-shadow .25s ease,filter .25s ease;
+}
+.btn.primary{
+  color:#fff;background:linear-gradient(135deg,#7ab6e6,#5b9cd8 45%,#ff9db5 145%);
+  box-shadow:0 14px 30px rgba(91,156,216,.42),0 1px 0 rgba(255,255,255,.5) inset;
+}
+.btn.primary:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 20px 40px rgba(91,156,216,.5)}
+.btn.primary:active{transform:translateY(0) scale(.99)}
+.heart-ico{display:inline-block;transition:transform .25s}
+.btn.primary:hover .heart-ico{transform:scale(1.25) rotate(-8deg)}
+.btn.pop{animation:pop .5s ease}
+@keyframes pop{0%{transform:scale(1)}35%{transform:scale(.94)}70%{transform:scale(1.06)}100%{transform:scale(1)}}
+.like-count{font-size:14px;color:#7b8fa8}
+.like-count b{font-family:var(--font-ui);font-weight:700;font-size:17px;color:var(--blue-deep)}
+.scroll-hint{
+  margin-top:56px;font-size:12px;letter-spacing:.24em;color:#8ca4bf;
+  display:inline-flex;flex-wrap:wrap;justify-content:center;gap:10px;align-items:center;
+}
+.scroll-hint span{width:1px;height:34px;background:linear-gradient(#9dbcd9,transparent);animation:drop 2.2s ease-in-out infinite}
+@keyframes drop{0%,100%{opacity:.2;transform:translateY(-6px)}50%{opacity:1;transform:translateY(4px)}}
+
+/* ---------- 卡片 ---------- */
+.why{padding:110px 0 20px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:24px}
+.card{
+  position:relative;background:rgba(255,253,248,.86);border:1px solid rgba(255,255,255,.9);
+  border-radius:var(--radius);padding:30px 28px 28px;
+  box-shadow:0 14px 34px rgba(63,127,181,.12);
+  backdrop-filter:blur(8px);
+  transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s;
+  overflow:hidden;
+}
+.card::after{
+  content:"";position:absolute;inset:auto -30% -60% auto;width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,183,201,.28),transparent 70%);
+  opacity:0;transition:.5s;
+}
+.card:hover{transform:translateY(-8px);box-shadow:0 26px 50px rgba(63,127,181,.2)}
+.card:hover::after{opacity:1}
+.ico-wrap{
+  width:54px;height:54px;border-radius:17px;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(160deg,rgba(214,236,253,.75),rgba(255,255,255,.9));
+  box-shadow:inset 0 1px 0 #fff,0 8px 18px rgba(63,127,181,.12);
+  margin-bottom:18px;transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s;
+}
+.card:hover .ico-wrap{transform:translateY(-4px) rotate(-4deg);box-shadow:inset 0 1px 0 #fff,0 12px 24px rgba(63,127,181,.18)}
+.card .ico{width:26px;height:26px;color:var(--blue-deep);display:block;margin:0;transition:color .3s,transform .45s}
+.card:hover .ico{color:var(--pink-deep);transform:scale(1.06)}
+.card h3{font-family:var(--font-cn);font-weight:400;font-size:21px;margin:0 0 12px}
+.card p{margin:0;font-size:15px;line-height:1.9;color:#5f7691}
+
+/* ---------- 时间线 ---------- */
+.days{padding:120px 0 20px}
+.timeline{list-style:none;margin:0;padding:0;position:relative;max-width:760px;margin-inline:auto}
+.timeline::before{
+  content:"";position:absolute;left:14px;top:8px;bottom:8px;width:2px;
+  background:linear-gradient(#bfe0fb,#ffc9d7,#bfe0fb);border-radius:2px;
+}
+.timeline li{position:relative;padding:0 0 40px 52px}
+.timeline li::before{
+  content:"";position:absolute;left:7px;top:8px;width:16px;height:16px;border-radius:50%;
+  background:#fff;border:3px solid var(--blue);box-shadow:0 0 0 5px rgba(191,224,251,.5);
+}
+.timeline li:last-child::before{border-color:var(--pink-deep);box-shadow:0 0 0 5px rgba(255,201,215,.55)}
+.timeline time{
+  font-family:var(--font-cn);font-size:15px;color:var(--blue-deep);display:block;margin-bottom:8px;
+}
+.timeline p{margin:0;font-size:16px;line-height:1.9;color:#5a7290}
+
+/* ---------- 许愿 ---------- */
+.wish{padding:130px 0 40px;text-align:center}
+.wish-box{display:flex;flex-direction:column;align-items:center;gap:28px}
+.cloud-btn{
+  position:relative;display:flex;flex-direction:column;align-items:center;
+  background:none;border:none;cursor:pointer;padding:0;
+  transition:transform .45s cubic-bezier(.2,.8,.2,1);
+}
+.cloud-btn:hover{transform:translateY(-6px)}
+.cloud-btn:active{transform:translateY(-1px) scale(.98)}
+.cloud-svg{
+  width:min(280px,64vw);height:auto;display:block;
+  filter:drop-shadow(0 20px 30px rgba(63,127,181,.22));
+  animation:floatCloud 7s ease-in-out infinite;
+}
+.cloud-label{
+  margin-top:-48px;position:relative;z-index:2;
+  font-family:var(--font-cn);font-size:15px;color:var(--blue-deep);letter-spacing:.06em;
+  border-bottom:1px dashed rgba(106,169,221,.45);padding-bottom:3px;
+}
+@keyframes floatCloud{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.wish-meta{font-size:15px;color:#6c829c}
+.wish-tip b{color:var(--blue-deep);font-size:18px}
+.wish-note{font-family:var(--font-cn);font-size:14px;color:#93a7bd;margin-top:8px}
+
+/* ---------- 引言 ---------- */
+.quote{
+  margin:130px auto 40px;max-width:820px;text-align:center;
+  padding:56px 40px;border-radius:32px;position:relative;
+  background:linear-gradient(160deg,rgba(255,255,255,.9),rgba(255,250,241,.72));
+  border:1px solid rgba(255,255,255,.9);
+  box-shadow:0 24px 60px rgba(63,127,181,.14);backdrop-filter:blur(10px);
+}
+.quote::before{
+  content:"\201C";position:absolute;top:6px;left:34px;font-family:Georgia,serif;
+  font-size:96px;color:rgba(255,157,181,.4);line-height:1;
+}
+.quote p{
+  margin:0;font-family:var(--font-cn);font-size:clamp(19px,2.4vw,26px);
+  line-height:1.9;color:#46607f;letter-spacing:.02em;
+}
+
+/* ---------- 页脚 ---------- */
+.footer{
+  position:relative;z-index:2;text-align:center;padding:60px 24px 78px;
+  font-size:13px;color:#8ba1b8;line-height:2;
+}
+.footer .sign{font-family:var(--font-cn);font-size:15px;color:#6f88a4}
+.foot-link{color:#8ba1b8;text-decoration:none;border-bottom:1px dashed rgba(139,161,184,.6)}
+.foot-link:hover{color:var(--blue-deep)}
+
+/* ---------- 动效 ---------- */
+.js .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
+.js .reveal.in{opacity:1;transform:none}
+
+/* ---------- 飘心 ---------- */
+.cursor-hearts{position:fixed;inset:0;pointer-events:none;z-index:9999}
+.fly-heart{
+  position:fixed;font-size:18px;color:var(--pink-deep);pointer-events:none;
+  animation:fly 1.5s cubic-bezier(.2,.7,.3,1) forwards;will-change:transform,opacity;
+}
+@keyframes fly{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(.6) rotate(0)}
+  18%{opacity:1}
+  100%{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1.15) rotate(var(--rot))}
+}
+.wish-cloud{
+  position:fixed;pointer-events:none;z-index:9998;border-radius:50%;background:#fff;
+  box-shadow:0 8px 20px rgba(63,127,181,.25);animation:rise 2.6s ease-out forwards;
+}
+@keyframes rise{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(.5)}
+  15%{opacity:.95}
+  100%{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% - 220px)) scale(1.6)}
+}
+
+@media (max-width:720px){
+  .nav{padding:20px}
+  .nav-links{display:none}
+  main{padding:0 20px 40px}
+  .hero{padding-top:22px}
+  .lede{font-size:15.5px}
+  .photo img{width:82vw}
+  .quote{padding:44px 24px}
+  .cloud-btn{padding:40px 30px}
+}

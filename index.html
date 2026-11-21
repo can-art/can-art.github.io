@@ -1,157 +1,808 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>云端偏爱 · Cinnamoroll</title>
-<meta name="description" content="一整个天空的喜欢，都留给这只大耳朵的小狗。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="云端偏爱 · Cinnamoroll">
-<meta property="og:description" content="把一整片天空的温柔，都写给你。">
-<meta property="og:image" content="./assets/cinnamoroll.png">
-<meta name="theme-color" content="#dff0ff">
-<link rel="preload" href="./fonts/zcool-kuaile.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="./fonts/quicksand.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="./style.css">
-<script>document.documentElement.classList.add("js");</script>
+<title>从会聊天到会干活 · Token 与 AI Agent 入门</title>
+<meta name="description" content="面向零基础读者的 Token、AI Agent 科普网页：常见软件、能做什么、与手机聊天 AI 的区别，以及社会态度和普及程度。">
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="style.css">
 </head>
-<body>
-<div class="sky" aria-hidden="true">
-  <div class="sun"></div>
-  <div class="clouds c1"></div>
-  <div class="clouds c2"></div>
-  <div class="clouds c3"></div>
-  <div class="sparkles"></div>
+<body class="tpl-xhs-white-editorial">
+<div class="deck">
+
+<!-- ============================================================ 01 COVER -->
+<section class="slide is-active cover">
+  <div class="xw-topline"></div>
+  <div class="xw-topbar">
+    <div class="xw-tag"><span class="dot"></span>AI 入门 · 写给完全不了解的人</div>
+    <div class="xw-page">01 / 16</div>
+  </div>
+
+  <div class="xw-cover">
+    <div class="xw-cover-copy">
+      <div class="xw-kicker">从今天起，看懂 AI 世界</div>
+      <h1 class="xw-title xw-cover-title">从<span class="xw-grad">会聊天</span><br>到<span class="xw-focus">会干活</span></h1>
+      <p class="xw-sub">一次讲清 <b>Token、AI Agent</b> 和它们正在改变的工作方式。<br>不需要技术背景，只要你会用手机。</p>
+      <div class="xw-cover-chips">
+        <span class="xw-pill">🧱 Token 是什么</span>
+        <span class="xw-pill">🤖 Agent 怎么干活</span>
+        <span class="xw-pill">📱 和手机 AI 有何不同</span>
+        <span class="xw-pill">📊 现在普及到哪了</span>
+      </div>
+      <div class="xw-proof"><span class="pulse"></span>本页由 DeepSeek Harness 现场制作</div>
+    </div>
+
+    <div class="xw-cover-visual" aria-hidden="true">
+      <div class="xw-float xw-float-a">会查资料</div>
+      <div class="xw-float xw-float-b">会写文件</div>
+      <div class="xw-float xw-float-c">会自己检查</div>
+      <div class="xw-desk">
+        <div class="xw-desk-head">
+          <span class="lights"><i></i><i></i><i></i></span>
+          <span>dsh / agent workspace</span>
+          <span class="live">● LIVE</span>
+        </div>
+        <div class="xw-desk-body">
+          <div><span class="prompt">$</span> 读取需求：做一个入门网页</div>
+          <div><span class="prompt">$</span> 读取技能：html-ppt</div>
+          <div><span class="prompt">$</span> 规划内容：16 页 · 零基础</div>
+          <div><span class="prompt">$</span> 写文件：index.html</div>
+          <div><span class="prompt">$</span> 截图检查：逐页看排版</div>
+          <div class="ok">✓ 已保存到「文档」文件夹</div>
+        </div>
+        <div class="xw-desk-foot">
+          <span class="chip">文件</span><span class="chip">终端</span><span class="chip">浏览器</span><span class="chip">验收</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="xw-footer"><span>从会聊天到会干活 · 零基础 AI 入门</span><span>Cover · 01 / 16</span></div>
+  <div class="notes">开场可以这样说：今天不讲代码，只讲清楚三件事——AI 眼里的文字是什么（Token）、Agent 为什么会“干活”、以及普通人该怎么用它。可以先指一下封面：你正在看的这个网页，就是 Agent 现场做出来的成品。</div>
+</section>
+
+<!-- ============================================================ 02 THREE WORDS -->
+<section class="slide">
+  <div class="xw-topline"></div>
+  <div class="xw-topbar">
+    <div class="xw-tag"><span class="dot"></span>先搭一张地图</div>
+    <div class="xw-page">02 / 16</div>
+  </div>
+
+  <h2 class="xw-title-md">先认识三个词：<span class="xw-grad">AI、大模型、Agent</span></h2>
+  <p class="xw-sub xw-sub-sm">它们经常被混着说，其实关系很清楚：一层包一层，最后才长出“会干活”的能力。</p>
+
+  <div class="xw-relation">
+    <article class="xw-rel-card soft-blue">
+      <div class="xw-rel-icon">🌐</div>
+      <div class="xw-rel-kicker">总称 · 最大的那把伞</div>
+      <h3>AI</h3>
+      <p>人工智能。下棋、识图、语音助手、自动驾驶……只要让机器表现出“聪明”，都算 AI。</p>
+      <div class="xw-rel-tag">像“电器”一样宽泛的词</div>
+    </article>
+    <div class="xw-rel-arrow">→</div>
+    <article class="xw-rel-card soft-purple">
+      <div class="xw-rel-icon">🧠</div>
+      <div class="xw-rel-kicker">其中一种 · 会生成内容的脑子</div>
+      <h3>大模型</h3>
+      <p>读了海量文字，学会理解和生成语言。ChatGPT、DeepSeek 这些聊天产品，底层都是大模型。</p>
+      <div class="xw-rel-tag">像一个知识面很广的“大脑”</div>
+    </article>
+    <div class="xw-rel-arrow">→</div>
+    <article class="xw-rel-card soft-green">
+      <div class="xw-rel-icon">🦾</div>
+      <div class="xw-rel-kicker">组合体 · 大脑 + 手脚 + 流程</div>
+      <h3>Agent</h3>
+      <p>把大模型装进工具箱，给它目标和权限。它会自己查、自己做、自己改，直到交出一个结果。</p>
+      <div class="xw-rel-tag">像一个会用电脑的“数字员工”</div>
+    </article>
+  </div>
+
+  <div class="xw-hero xw-hero-tight">
+    <div class="xw-quote">AI 是总称，大模型是大脑，<br><span class="xw-focus">Agent 是能干活的那个人。</span></div>
+  </div>
+
+  <div class="xw-footer"><span>三个词，一张图</span><span>02 / 16</span></div>
+  <div class="notes">这里先把概念理顺。AI 是最大的伞；大模型是伞下一种特别会处理语言的模型；Agent 不是又一个模型，而是“模型 + 工具 + 流程”的系统。可以打个比方：AI 是“电器”，大模型是“会思考的电机”，Agent 是“装好轮子、能自己跑起来的机器人”。</div>
+</section>
+
+<!-- ============================================================ 03 TOKEN -->
+<section class="slide">
+  <div class="xw-topline"></div>
+  <div class="xw-topbar">
+    <div class="xw-tag"><span class="dot"></span>第一个关键词 · Token</div>
+    <div class="xw-page">03 / 16</div>
+  </div>
+
+  <h2 class="xw-title-md">Token：AI 眼里的<span class="xw-grad">「文字积木」</span></h2>
+  <p class="xw-sub xw-sub-sm">你跟 AI 说的每句话，都会先被切成一小块一小块，再变成数字。</p>
+
+  <div class="xw-token-split">
+    <div class="xw-token-stage">
+      <div class="xw-stage-label">你看到的是</div>
+      <div class="xw-human-sentence">今天天气真不错！</div>
+      <div class="xw-stage-label xw-stage-label-gap">AI 先切成 token</div>
+      <div class="xw-token-sentence">
+        <div class="xw-token t1"><b>今天</b><span>1024</span></div>
+        <div class="xw-token t2"><b>天气</b><span>7821</span></div>
+        <div class="xw-token t3"><b>真</b><span>393</span></div>
+        <div class="xw-token t4"><b>不错</b><span>4711</span></div>
+        <div class="xw-token t5"><b>！</b><span>18</span></div>
+      </div>
+      <div class="xw-stage-note">编号只是示意。不同模型、不同语言，切法可能不一样。</div>
+    </div>
+
+    <div class="xw-facts">
+      <div class="xw-fact">
+        <div class="xw-fact-num">1</div>
+        <div><b>AI 不直接“看字”</b><p>它先把文字切成 token，再换算成编号，在数字世界里做预测。</p></div>
+      </div>
+      <div class="xw-fact">
+        <div class="xw-fact-num">2</div>
+        <div><b>回答也是一个 token 一个 token 拼出来的</b><p>所以它有时会“越说越顺”，但并不等于每个字都经过查证。</p></div>
+      </div>
+      <div class="xw-fact">
+        <div class="xw-fact-num">3</div>
+        <div><b>Token 不是币</b><p>不是虚拟货币，也不是积分。它只是 AI 读写文字的最小计量单位。</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="xw-hero xw-hero-tight">
+    <div class="xw-quote">Token 既是 AI 的<span class="xw-focus-blue">阅读单位</span>，也是它的<span class="xw-focus-orange">计费单位</span>。</div>
+  </div>
+
+  <div class="xw-footer"><span>Token · 文字积木</span><span>03 / 16</span></div>
+  <div class="notes">Token 这个词特别容易被神秘化。可以把它想成乐高积木：AI 不是按“字”处理，而是按一块块 token 处理。中文里一个 token 常常接近一个汉字，英文一个单词可能是一到两个 token，但不同模型不一样，所以只能粗略估算。重点强调：Token 不是币，不要和虚拟货币混在一起。</div>
+</section>
+
+<!-- ============================================================ 04 TOKEN COST / CONTEXT -->
+<section class="slide">
+  <div class="xw-topline"></div>
+  <div class="xw-topbar">
+    <div class="xw-tag"><span class="dot"></span>Token 的两个日常后果</div>
+    <div class="xw-page">04 / 16</div>
+  </div>
+
+  <h2 class="xw-title-md">为什么总听到：<span class="xw-grad">按 token 计费、上下文超了</span>？</h2>
+  <p class="xw-sub xw-sub-sm">把 token 想成“公里数”，把上下文想成“桌面大小”，一下就懂了。</p>
+
+  <div class="xw-token-split xw-two">
+    <div class="xw-panel">
+      <div class="xw-panel-head"><span class="xw-panel-label">计费</span><span class="xw-panel-title">像打车按公里，AI 按 token</span></div>
+      <div class="xw-receipt">
+        <div class="xw-receipt-head"><span>本次对话小票（示意）</span><span>TOKENS</span></div>
+        <div class="xw-receipt-line"><span>你发的问题</span><b>320</b></div>
+        <div class="xw-receipt-line"><span>它读的资料</span><b>8,400</b></div>
+        <div class="xw-receipt-line"><span>它写的回答</span><b>900</b></div>
+        <div class="xw-receipt-total"><span>合计</span><b>9,620</b></div>
+        <div class="xw-receipt-note">输入 + 输出，通常都要算钱。资料越长、任务越长，账单越高。</div>
+      </div>
+    </div>
+
+    <div class="xw-panel">
+      <div class="xw-panel-head"><span class="xw-panel-label">记忆</span><span class="xw-panel-title">上下文窗口 = 一次能摊多大的桌</span></div>
+      <div class="xw-context">
+        <div class="xw-context-top"><span>这次对话还能放多少？</span><b>72%</b></div>
+        <div class="xw-context-bar"><span style="width:72%"></span></div>
+        <div class="xw-context-legend"><span>已经塞进去的</span><span>剩余空间</span></div>
+        <div class="xw-context-blocks">
+          <span class="blk b1">聊天记录</span><span class="blk b2">上传的文件</span><span class="blk b3">搜索结果</span><span class="blk b4">工具输出</span>
+        </div>
+        <div class="xw-context-note">桌面就那么大。塞满了，就得总结、删旧内容，或者新开一桌。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="xw-hero xw-hero-tight">
+    <div class="xw-quote"><span class="xw-focus-pink">上下文不是永久记忆。</span> 新开一个对话，桌子可能就清空了。</div>
+  </div>
+  <div class="xw-fineprint">粗略估算：1 个汉字 ≈ 1 token，1 个英文单词 ≈ 1–2 token；不同模型不一样，别把它当精确字数。</div>
+
+  <div class="xw-footer"><span>Token · 计费与上下文</span><span>04 / 16</span></div>
+  <div class="notes">这一页回答大家最常见的两个疑问。第一，为什么 AI 要按 token 收费——因为它读进去、写出来都消耗算力。第二，为什么聊久了它会“忘事”——上下文窗口就像一张桌子，能摊开的资料有限。这里要纠正一个误解：上下文不是永久记忆，新开对话可能就没了。估算比例只是方便理解，不要拿来做精确预算。</div>
+</section>
+
+<!-- ============================================================ 05 CHAT VS AGENT -->
+<section class="slide">
+  <div class="xw-topline"></div>
+  <div class="xw-topbar">
+    <div class="xw-tag"><span class="dot"></span>第二个关键词 · AI Agent</div>
+    <div class="xw-page">05 / 16</div>
+  </div>
+
+  <h2 class="xw-title-md">AI Agent：把<span class="xw-grad">「会聊天」</span>变成<span class="xw-focus">「会办事」</span></h2>
+  <p class="xw-sub xw-sub-sm">同样是 AI，差别不在嘴，而在有没有手、有没有工具、能不能连续做下去。</p>
+
+  <div class="xw-versus">
+    <div class="xw-agent-panel xw-chat-panel">
+      <div class="xw-agent-head"><div><span class="xw-role">普通聊天 AI</span><h3>像一个随身顾问</h3></div><span class="xw-badge">主要动嘴</span></div>
+      <div class="xw-chat">
+        <div class="bubble user">帮我做一份云南 5 天攻略</div>
+        <div class="bubble ai">好的！第一天建议到昆明，第二天去大理……</div>
+      </div>
+      <div class="xw-output"><span>它给你</span><b>一段文字 / 一些建议</b></div>
+    </div>
+
+    <div class="xw-agent-panel xw-doer-panel">
+      <div class="xw-agent-head"><div><span class="xw-role">AI Agent</span><h3>像一个项目搭档</h3></div><span class="xw-badge dark">真的动手</span></div>
+      <div class="xw-task">
+        <div class="xw-task-goal"><span>目标</span>做一份云南 5 天攻略，并做成网页</div>
+        <div class="xw-task-steps">
+          <div><i>1</i>搜索路线、天气和交通</div>
+          <div><i>2</i>对比预算，排出 5 天行程</div>
+          <div><i>3</i>写出网页，配好地图和清单</div>
+          <div><i>4</i>打开检查，修掉排版问题</div>
+          <div><i>5</i>保存文件，交付给你</div>
+        </div>
+      </div>
+      <div class="xw-output dark"><span>它给你</span><b>一个能打开、能继续改的结果</b></div>
+    </div>
+  </div>
+
+  <div class="xw-formula">
+    <span class="fx-label">一句话公式</span>
+    <b>Agent</b><span>=</span><em>大模型</em><span>+</span><em>工具</em><span>+</span><em>记忆</em><span>+</span><em>目标</em><span>+</span><em>循环</em>
+  </div>
+
+  <div class="xw-footer"><span>聊天 vs 办事</span><span>05 / 16</span></div>
+  <div class="notes">不要一上来就讲“自主性”“规划”“工具调用”这些词。先让观众看到差别：聊天 AI 给你一段建议；Agent 会真的查、真的写、真的打开检查。然后给出公式：大模型只是大脑，工具是手脚，记忆让它知道做到哪了，目标让它不跑偏，循环让它能试错和修正。</div>
+</section>
+
+<!-- ============================================================ 06 ANATOMY -->
+<section class="slide">
+  <div class="xw-topline"></div>
+  <div class="xw-topbar">
+    <div class="xw-tag"><span class="dot"></span>拆开看看</div>
+    <div class="xw-page">06 / 16</div>
+  </div>
+
+  <h2 class="xw-title-md">一个 Agent 的<span class="xw-grad">五个零件</span></h2>
+  <p class="xw-sub xw-sub-sm">把它想成一个会用电脑的实习生，就很好理解：有脑子、有眼睛、有手、有记性，也要有刹车。</p>
+
+  <div class="xw-parts">
+    <article class="xw-part">
+      <div class="xw-part-icon">🧠</div>
+      <div class="xw-part-kicker">01 · 大脑</div>
+      <h3>大模型</h3>
+      <p>理解你的话，判断下一步做什么，写出方案和结果。</p>
+    </article>
+    <article class="xw-part">
+      <div class="xw-part-icon">👀</div>
+      <div class="xw-part-kicker">02 · 感官</div>
+      <h3>读输入</h3>
+      <p>看文件、网页、图片、表格，把外界信息变成它能处理的 token。</p>
+    </article>
+    <article class="xw-part xw-part-accent">
+      <div class="xw-part-icon">🛠️</div>
+      <div class="xw-part-kicker">03 · 双手</div>
+      <h3>工具</h3>
+      <p>搜索、写文件、跑命令、开网页、调用别的软件。这是“会干活”的关键。</p>
+    </article>
+    <article class="xw-part">
+      <div class="xw-part-icon">🗂️</div>
+      <div class="xw-part-kicker">04 · 记性</div>
+      <h3>记忆</h3>
+      <p>记住目标、资料和进度。上下文是短记忆，项目文件是长记忆。</p>
+    </article>
+    <article class="xw-part">
+      <div class="xw-part-icon">🛑</div>
+      <div class="xw-part-kicker">05 · 刹车</div>
+      <h3>权限与验收</h3>
+      <p>哪些能做、哪些要问你、做完怎么检查。没有刹车的 Agent 不能放心用。</p>
+    </article>
+  </div>
+
+  <div class="xw-hero xw-hero-tight">
+    <div class="xw-quote">真正决定它好不好用的，不是“多聪明”，<br>而是<span class="xw-focus-green">有没有对的工具、信息和刹车</span>。</div>
+  </div>
+
+  <div class="xw-footer"><span>Agent 的五个零件</span><span>06 / 16</span></div>
+  <div class="notes">这一页是理解 Agent 的骨架。大脑负责想，感官负责读，双手负责做，记忆负责不忘，刹车负责不出事。很多人只盯着“模型多强”，但真实工作里，工具、资料和权限往往更决定结果。也可以顺势提醒：给 Agent 权限，就像把家门钥匙交给实习生，要先从小权限开始。</div>
+</section>
+
+<!-- ============================================================ 07 CAPABILITIES -->
+<section class="slide">
+  <div class="xw-topline"></div>
+  <div class="xw-topbar">
+    <div class="xw-tag"><span class="dot"></span>具体能做什么</div>
+    <div class="xw-page">07 / 16</div>
+  </div>
+
+  <h2 class="xw-title-md">它具体能做什么？<span class="xw-grad">六个真实场景</span></h2>
+  <p class="xw-sub xw-sub-sm">共同点：都要用工具、都要交付一个结果、都值得你验收。</p>
+
+  <div class="xw-scenes">
+    <article class="xw-scene soft-blue">
+      <div class="xw-scene-top"><span class="xw-scene-icon">📚</span><span class="xw-scene-tag">查资料</span></div>
+      <h3>读一堆材料，写出结论</h3>
+      <p>把 20 篇文章、会议记录或网页，整理成一页重点、对比表或汇报稿。</p>
+      <div class="xw-scene-say">“按观点分组，标出出处”</div>
+    </article>
+    <article class="xw-scene soft-purple">
+      <div class="xw-scene-top"><span class="xw-scene-icon">💻</span><span class="xw-scene-tag">做东西</span></div>
+      <h3>写代码，做出能用的产品</h3>
+      <p>从零做一个网页、小工具、数据看板，或者修掉一个恼人的 bug。</p>
+      <div class="xw-scene-say">“做一个能打开的网页”</div>
+    </article>
+    <article class="xw-scene soft-green">
+      <div class="xw-scene-top"><span class="xw-scene-icon">📊</span><span class="xw-scene-tag">办公</span></div>
+      <h3>整理文件，做出交付物</h3>
+      <p>汇总 Excel、生成 PPT、改合同、整理照片，把杂活变成可交付的文件。</p>
+      <div class="xw-scene-say">“按地区汇总这张表”</div>
+    </article>
+    <article class="xw-scene soft-orange">
+      <div class="xw-scene-top"><span class="xw-scene-icon">🧭</span><span class="xw-scene-tag">生活</span></div>
+      <h3>替你查、比、排、写</h3>
+      <p>做旅行攻略、比价、排日程、写邮件、准备礼物清单，省下琐碎时间。</p>
+      <div class="xw-scene-say">“安排 5 天亲子游”</div>
+    </article>
+    <article class="xw-scene soft-pink">
+      <div class="xw-scene-top"><span class="xw-scene-icon">🎓</span><span class="xw-scene-tag">学习</span></div>
+      <h3>把难概念讲到你能懂</h3>
+      <p>当私教、出练习题、模拟面试，按你的水平换例子、换讲法。</p>
+      <div class="xw-scene-say">“用小学生能懂的话讲 token”</div>
+    </article>
+    <article class="xw-scene soft-blue">
+      <div class="xw-scene-top"><span class="xw-scene-icon">🔁</span><span class="xw-scene-tag">自动化</span></div>
+      <h3>定时跑流程，不用你盯</h3>
+      <p>每天收集信息、整理日报、跟进任务，到点自动执行并留下记录。</p>
+      <div class="xw-scene-say">“每天 9 点给我一份简报”</div>
+    </article>
+  </div>
+
+  <div class="xw-takeaway"><span class="xw-takeaway-label">一句话</span><b>它能交付结果，但最后签字的人，还是你。</b></div>
+
+  <div class="xw-footer"><span>六个场景</span><span>07 / 16</span></div>
+  <div class="notes">不要只讲“可以写文案”这种空泛能力，要讲具体结果。可以挑两个和听众最相关的例子展开：比如把一堆资料变成一页报告，或者把一张乱七八糟的表格整理成可交付的文件。最后强调：它能做，不代表它一定做对；所以“交付物 + 验收”要一起讲。</div>
+</section>
+
+<!-- ============================================================ 08 CASE STUDY -->
+<section class="slide">
+  <div class="xw-topline"></div>
+  <div class="xw-topbar">
+    <div class="xw-tag"><span class="dot"></span>现场案例 · 不是演示</div>
+    <div class="xw-page">08 / 16</div>
+  </div>
+
+  <h2 class="xw-title-md">这个网页，<span class="xw-grad">就是它做的</span></h2>
+  <p class="xw-sub xw-sub-sm">没有预录视频，也不是截图。你现在翻的每一页，都是本次对话里现场生成的文件。</p>
+
+  <div class="xw-case">
+    <div class="xw-timeline">
+      <div class="xw-tl-item">
+        <div class="xw-tl-num">01</div>
+        <div><b>读说明</b><p>找到 html-ppt 技能文档，读懂模板、布局和键盘交互规范。</p></div>
+      </div>
+      <div class="xw-tl-item">
+        <div class="xw-tl-num">02</div>
+        <div><b>定结构</b><p>按“完全不了解的人”设计 16 页：先概念，再软件，再区别，最后态度与普及。</p></div>
+      </div>
+      <div class="xw-tl-item">
+        <div class="xw-tl-num">03</div>
+        <div><b>动手做</b><p>写 HTML 和 CSS，接入本地资源，把 token、Agent、软件地图做成可视化版面。</p></div>
+      </div>
+      <div class="xw-tl-item">
+        <div class="xw-tl-num">04</div>
+        <div><b>自己验</b><p>用浏览器逐页截图，检查文字有没有溢出、层级是否清楚，再保存到文档文件夹。</p></div>
+      </div>
+    </div>
+
+    <div class="xw-terminal">
+      <div class="xw-term-head"><span class="lights"><i></i><i></i><i></i></span><span>dsh · real session</span><span class="live">● RUNNING</span></div>
+      <div class="xw-term-body">
+        <div><span class="tp">$</span> dsh</div>
+        <div class="dimline">› 目标：做一份零基础 AI 入门网页</div>
+        <div class="dimline">› 读取 skills/html-ppt</div>
+        <div class="dimline">› 规划 16 页内容结构</div>
+        <div class="dimline">› 写 index.html + style.css</div>
+        <div class="dimline">› 截图检查 16 页排版</div>
+        <div class="ok">✓ 已保存：~/文档/Token与AI Agent入门/</div>
+      </div>
+      <div class="xw-term-foot">它不是“告诉你怎么做”，<br>而是“做完给你看”。</div>
+    </div>
+  </div>
+
+  <div class="xw-hero xw-hero-tight">
+    <div class="xw-quote">Agent 的交付物，不是一段漂亮的话，<br>而是一个<span class="xw-focus">你能打开、能继续改的真实文件</span>。</div>
+  </div>
+
+  <div class="xw-footer"><span>真实工作记录</span><span>08 / 16</span></div>
+  <div class="notes">这一页是全场最有说服力的“证据”。可以现场翻两页，告诉大家：这些不是提前做好的图片，而是 Agent 在这台电脑上写文件、截图、修改后留下的结果。注意不要把 Agent 神化——它也会犯错，所以流程里才有“自己验”这一步。</div>
+</section>
+
+<!-- ============================================================ 09 SOFTWARE MAP -->
+<section class="slide">
+  <div class="xw-topline"></div>
+  <div class="xw-topbar">
+    <div class="xw-tag"><span class="dot"></span>软件地图</div>
+    <div class="xw-page">09 / 16</div>
+  </div>
+
+  <h2 class="xw-title-md">常见软件地图：<span class="xw-grad">先认类别，不用背名字</span></h2>
+  <p class="xw-sub xw-sub-sm">名字会一直变，类别更稳定。知道自己需要哪一类，比追每一个新工具更重要。</p>
+
+  <div class="xw-software">
+    <article class="xw-soft-col">
+      <div class="xw-soft-head"><span class="xw-soft-icon">💬</span><span class="xw-soft-kicker">01 · 你问，它答</span></div>
+      <h3>聊天助手</h3>
+      <p>最熟悉的一类。适合问答、写作、翻译、头脑风暴。</p>
+      <div class="xw-soft-fit">适合：第一次用 AI、日常问答、内容工作</div>
+      <div class="xw-names"><span>DeepSeek</span><span>ChatGPT</span><span>Claude</span><span>Gemini</span><span>豆包</span><span>Kimi</span></div>
+    </article>
+    <article class="xw-soft-col">
+      <div class="xw-soft-head"><span class="xw-soft-icon">⌨️</span><span class="xw-soft-kicker">02 · 读写代码、跑测试</span></div>
+      <h3>编程 Agent</h3>
+      <p>直接在你的项目里改文件、跑命令、修 bug、交付功能。</p>
+      <div class="xw-soft-fit">适合：开发者、想快速做小工具的人</div>
+      <div class="xw-names"><span class="hero-name">DeepSeek Harness</span><span>Claude Code</span><span>Codex</span><span>Cursor</span><span>GitHub Copilot</span></div>
+    </article>
+    <article class="xw-soft-col">
+      <div class="xw-soft-head"><span class="xw-soft-icon">🌐</span><span class="xw-soft-kicker">03 · 跨网页、跨软件</span></div>
+      <h3>通用任务 Agent</h3>
+      <p>替你在网页和软件之间来回操作，完成一整条任务链路。</p>
+      <div class="xw-soft-fit">适合：运营、研究、需要跨软件跑流程的人</div>
+      <div class="xw-names"><span>Manus</span><span>OpenClaw</span><span>浏览器 Agent</span><span>各类“电脑操作”Agent</span></div>
+    </article>
+    <article class="xw-soft-col">
+      <div class="xw-soft-head"><span class="xw-soft-icon">📎</span><span class="xw-soft-kicker">04 · 长在文档和会议里</span></div>
+      <h3>办公与创作</h3>
+      <p>嵌入 Word、表格、PPT、会议和知识库，帮你处理日常工作。</p>
+      <div class="xw-soft-fit">适合：已经在用 Office / WPS 的个人和团队</div>
+      <div class="xw-names"><span>Microsoft 365 Copilot</span><span>WPS AI</span><span>Notion AI</span><span>飞书智能伙伴</span></div>
+    </article>
+  </div>
+
+  <div class="xw-soft-note"><span class="dot"></span>很多产品正在互相融合；你手机里的 AI，也正在从“会聊”长成“会办”。</div>
+
+  <div class="xw-choose">
+    <span class="xw-choose-label">30 秒选型</span>
+    <span><b>只想问答</b> → 聊天助手</span>
+    <span><b>要交付文件 / 代码</b> → 编程或通用 Agent</span>
+    <span><b>日常办公</b> → 办公 AI</span>
+  </div>
+
+  <div class="xw-footer"><span>四类常见软件</span><span>09 / 16</span></div>
+  <div class="notes">这张图不是“权威排行榜”，而是帮助大家建立分类感。聊天助手最常见；编程 Agent 已经在真实项目里干活；通用任务 Agent 试图跨网页操作；办公类则直接长在文档和会议里。名字不用记，记住四句话：谁在回答、谁在写代码、谁在跑流程、谁在办公软件里。</div>
+</section>
+
+<!-- ============================================================ 10 DSH -->
+<section class="slide">
+  <div class="xw-topline"></div>
+  <div class="xw-topbar">
+    <div class="xw-tag"><span class="dot"></span>你正在用的这个 · DeepSeek Harness</div>
+    <div class="xw-page">10 / 16</div>
+  </div>
+
+  <h2 class="xw-title-md">DeepSeek Harness：<span class="xw-grad">一间给 AI 的「办公室」</span></h2>
+  <p class="xw-sub xw-sub-sm">它不是一个更大的聊天框，而是把模型接上文件、终端、浏览器和流程的工作台。你左边聊天，它右边真的动手。</p>
+
+  <div class="xw-tools">
+    <article class="xw-tool">
+      <div class="xw-tool-icon">📁</div>
+      <h3>文件</h3>
+      <p>读、写、整理你电脑上的文件，把结果真正保存下来。</p>
+      <div class="xw-tool-eg">例：把下载文件夹按项目归档</div>
+    </article>
+    <article class="xw-tool">
+      <div class="xw-tool-icon">⌨️</div>
+      <h3>终端</h3>
+      <p>运行命令、安装依赖、跑测试，像工程师一样检查自己的作品。</p>
+      <div class="xw-tool-eg">例：跑测试、修构建错误</div>
+    </article>
+    <article class="xw-tool">
+      <div class="xw-tool-icon">🌐</div>
+      <h3>浏览器与搜索</h3>
+      <p>查资料、打开网页、核对信息，不是只凭记忆回答。</p>
+      <div class="xw-tool-eg">例：查政策原文并标出来源</div>
+    </article>
+    <article class="xw-tool">
+      <div class="xw-tool-icon">⏰</div>
+      <h3>定时任务</h3>
+      <p>到点自动执行：每天整理简报、检查更新、提醒跟进。</p>
+      <div class="xw-tool-eg">例：每天 9 点发一份行业简报</div>
+    </article>
+    <article class="xw-tool">
+      <div class="xw-tool-icon">🧑‍🤝‍🧑</div>
+      <h3>子代理</h3>
+      <p>把大任务拆给多个小助手并行处理，再汇总成一个结果。</p>
+      <div class="xw-tool-eg">例：同时调研 5 家公司</div>
+    </article>
+    <article class="xw-tool">
+      <div class="xw-tool-icon">🧩</div>
+      <h3>技能与插件</h3>
+      <p>把专业流程、模板、工具教给它，让它越用越贴合你的工作。</p>
+      <div class="xw-tool-eg">例：套用公司固定 PPT 模板</div>
+    </article>
+  </div>
+
+  <div class="xw-hero xw-hero-tight">
+    <div class="xw-quote"><span class="xw-focus-orange">能力越强，越要管权限。</span> 让它先说计划，重要操作先确认，结果自己再抽查。</div>
+  </div>
+
+  <div class="xw-footer"><span>DeepSeek Harness · 工作台</span><span>10 / 16</span></div>
+  <div class="notes">这一页专门介绍用户正在使用的 DeepSeek Harness。可以把它类比成“给 AI 准备的办公室”：有文件柜、终端、浏览器、日程表、同事和技能手册。它不是模型本身，而是让模型能安全调用这些能力的运行环境。最后一定要讲权限：能删文件、能发消息，就意味着必须有人管刹车。</div>
+</section>
+
+<!-- ============================================================ 11 DIFFERENCE -->
+<section class="slide">
+  <div class="xw-topline"></div>
+  <div class="xw-topbar">
+    <div class="xw-tag"><span class="dot"></span>和手机里的 AI 比一比</div>
+    <div class="xw-page">11 / 16</div>
+  </div>
+
+  <h2 class="xw-title-md">和手机里聊天的 AI，<span class="xw-grad">差在哪？</span></h2>
+  <p class="xw-sub xw-sub-sm">不是谁更聪明，而是谁更能动手、能连续做多久、你敢放多少权。</p>
+
+  <table class="xw-compare">
+    <thead>
+      <tr><th>比较维度</th><th>手机里的聊天 AI</th><th>桌面上的 AI Agent</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>你给它什么</td><td>一句话、一个问题</td><td>目标 + 资料 + 工具 + 权限</td></tr>
+      <tr><td>它回你什么</td><td>一段回答、一些建议</td><td>一个能打开的结果、一份文件</td></tr>
+      <tr><td>能干多久</td><td>通常一轮对话</td><td>几十分钟、几天，能持续推进</td></tr>
+      <tr><td>会不会用工具</td><td>以聊天、搜索为主</td><td>读写文件、跑命令、开网页、调 API</td></tr>
+      <tr><td>记忆在哪里</td><td>聊天记录</td><td>上下文 + 项目文件 + 长期记忆</td></tr>
+      <tr><td>风险在哪里</td><td>说错话、给错建议</td><td>改错文件、发错邮件、花错钱</td></tr>
+    </tbody>
+  </table>
+
+  <div class="xw-hero xw-hero-tight">
+    <div class="xw-quote">边界正在消失：手机 AI 也会越来越像 Agent。<br>真正的分水岭是<span class="xw-focus">「能不能动手」和「你敢不敢放权」</span>。</div>
+  </div>
+
+  <div class="xw-questions">
+    <span class="xw-questions-label">什么时候值得交给 Agent？</span>
+    <span class="xw-q">需要动手</span><span class="xw-q">结果能检查</span><span class="xw-q">出错输得起</span>
+  </div>
+
+  <div class="xw-footer"><span>聊天 AI vs Agent</span><span>11 / 16</span></div>
+  <div class="notes">这页要做“对比但不贬低”。手机 AI 很方便，适合随手问；Agent 更适合有交付物的任务。要提醒边界正在融合：今天的手机助手也在长出手脚。真正的差别不只是设备，而是工具、连续性、权限和风险。最后一句可以留给观众自己判断：你愿意把哪一步交给它？</div>
+</section>
+
+<!-- ============================================================ 12 PROS CONS -->
+<section class="slide">
+  <div class="xw-topline"></div>
+  <div class="xw-topbar">
+    <div class="xw-tag"><span class="dot"></span>冷静看两面</div>
+    <div class="xw-page">12 / 16</div>
+  </div>
+
+  <h2 class="xw-title-md">优势很实在，<span class="xw-grad">代价也要看清</span></h2>
+  <p class="xw-sub xw-sub-sm">只说“很强”是广告，只说“翻车”是吓唬。真实情况在中间。</p>
+
+  <div class="xw-balance">
+    <div class="xw-balance-col xw-good">
+      <div class="xw-balance-head"><span>✓</span><h3>强在哪里</h3></div>
+      <div class="xw-balance-item"><b>从建议到交付</b><p>不只告诉你步骤，直接把文件、网页、表格做出来。</p></div>
+      <div class="xw-balance-item"><b>长任务不断线</b><p>可以连续查、写、改、验，不需要你每一步都盯着。</p></div>
+      <div class="xw-balance-item"><b>接进真实环境</b><p>你的文件、代码、浏览器和软件，都能成为它的工作对象。</p></div>
+      <div class="xw-balance-item"><b>可复用、可并行</b><p>一套流程反复用；多个子任务可以同时推进。</p></div>
+    </div>
+    <div class="xw-balance-col xw-bad">
+      <div class="xw-balance-head"><span>!</span><h3>别误会</h3></div>
+      <div class="xw-balance-item"><b>它会自信地犯错</b><p>越流畅越像真的。关键结果一定要抽查、要来源、要复核。</p></div>
+      <div class="xw-balance-item"><b>成本会累积</b><p>长任务、大文件、多轮尝试都会消耗 token 和时间。</p></div>
+      <div class="xw-balance-item"><b>权限是双刃剑</b><p>能帮你删文件，也能删错文件。最小权限、重要操作确认。</p></div>
+      <div class="xw-balance-item"><b>不是一切都值得自动化</b><p>沟通、判断、创意和关系，仍然需要人来负责。</p></div>
+    </div>
+  </div>
+
+  <div class="xw-hero xw-hero-tight">
+    <div class="xw-quote"><span class="xw-focus-pink">Agent 放大你的能力，也放大你的疏忽。</span></div>
+  </div>
+
+  <div class="xw-guards">
+    <span class="xw-guards-label">三条护栏</span>
+    <span class="xw-guard">最小权限</span><span class="xw-guard">重要操作先确认</span><span class="xw-guard">结果自己抽查</span>
+  </div>
+
+  <div class="xw-footer"><span>优势与代价</span><span>12 / 16</span></div>
+  <div class="notes">这一页建立信任。先讲它的四个实在优势，再讲四个必须付的代价。不要回避“它会犯错”和“权限有风险”，反而要主动说。最后落到一句话：Agent 是放大器，放大能力，也放大疏忽。所以人要留在验收环节。</div>
+</section>
+
+<!-- ============================================================ 13 SHIFTS -->
+<section class="slide">
+  <div class="xw-topline"></div>
+  <div class="xw-topbar">
+    <div class="xw-tag"><span class="dot"></span>对普通人意味着什么</div>
+    <div class="xw-page">13 / 16</div>
+  </div>
+
+  <h2 class="xw-title-md">真正的变化：<span class="xw-grad">从“用工具”到“派任务”</span></h2>
+  <p class="xw-sub xw-sub-sm">你不需要先成为程序员。你需要成为一个会派活、会验收的人。</p>
+
+  <div class="xw-shifts">
+    <div class="xw-shift">
+      <div class="xw-shift-num">01</div>
+      <div class="xw-shift-from"><span>以前</span><b>搜答案</b></div>
+      <div class="xw-shift-arrow">→</div>
+      <div class="xw-shift-to"><span>现在</span><b>交任务</b></div>
+      <p>把“给我链接”换成“帮我读完，做成一张对比表”。</p>
+    </div>
+    <div class="xw-shift">
+      <div class="xw-shift-num">02</div>
+      <div class="xw-shift-from"><span>以前</span><b>会写提示词</b></div>
+      <div class="xw-shift-arrow">→</div>
+      <div class="xw-shift-to"><span>现在</span><b>会讲清背景</b></div>
+      <p>别只说“帮我写个方案”。要说给谁看、什么目标、哪些不能碰。</p>
+    </div>
+    <div class="xw-shift">
+      <div class="xw-shift-num">03</div>
+      <div class="xw-shift-from"><span>以前</span><b>看它说得好不好</b></div>
+      <div class="xw-shift-arrow">→</div>
+      <div class="xw-shift-to"><span>现在</span><b>验它做得对不对</b></div>
+      <p>让它交文件、给来源、跑检查。你负责最后那一下签字。</p>
+    </div>
+  </div>
+
+  <div class="xw-say">
+    <span class="xw-say-label">三个万能句式</span>
+    <span class="xw-say-pill">“目标是……”</span>
+    <span class="xw-say-pill">“材料在……”</span>
+    <span class="xw-say-pill">“做完请……”</span>
+  </div>
+
+  <div class="xw-footer"><span>普通人的三个转变</span><span>13 / 16</span></div>
+  <div class="notes">这一页把“技术话题”拉回到普通人身上。不需要会写代码，但要会三件事：派任务、讲背景、验收结果。可以带大家念一遍三个句式：“目标是……”“材料在……”“做完请……”。这就是最实用的提示词结构，不需要背复杂模板。</div>
+</section>
+
+<!-- ============================================================ 14 ATTITUDES -->
+<section class="slide">
+  <div class="xw-topline"></div>
+  <div class="xw-topbar">
+    <div class="xw-tag"><span class="dot"></span>社会态度</div>
+    <div class="xw-page">14 / 16</div>
+  </div>
+
+  <h2 class="xw-title-md">社会怎么看？<span class="xw-grad">四种声音同时存在</span></h2>
+  <p class="xw-sub xw-sub-sm">同一个人，可能一边真香，一边焦虑，一边警惕。这不是矛盾，是新技术进入生活的正常状态。</p>
+
+  <div class="xw-attitudes">
+    <article class="xw-attitude a-green">
+      <div class="xw-att-icon">😍</div>
+      <div><h3>真香派</h3><p>“效率真的高，用过就回不去了。”</p><span>关键词：提效、尝鲜、FOMO</span></div>
+    </article>
+    <article class="xw-attitude a-orange">
+      <div class="xw-att-icon">😰</div>
+      <div><h3>焦虑派</h3><p>“我的工作会不会被替代？孩子该学什么？”</p><span>关键词：岗位、教育、差距</span></div>
+    </article>
+    <article class="xw-attitude a-blue">
+      <div class="xw-att-icon">🤨</div>
+      <div><h3>怀疑派</h3><p>“它一本正经胡说八道，翻车谁负责？”</p><span>关键词：幻觉、可靠性、责任</span></div>
+    </article>
+    <article class="xw-attitude a-pink">
+      <div class="xw-att-icon">🛡️</div>
+      <div><h3>警惕派</h3><p>“隐私、版权、作弊、诈骗，怎么办？”</p><span>关键词：安全、伦理、监管</span></div>
+    </article>
+  </div>
+
+  <div class="xw-hero xw-hero-tight">
+    <div class="xw-quote">成熟的态度不是选边站，而是：<br><span class="xw-focus-green">用它擅长的事，补上它的短板。</span></div>
+  </div>
+
+  <div class="xw-footer"><span>社会态度的四个切面</span><span>14 / 16</span></div>
+  <div class="notes">这一页不要制造对立。四种声音都有合理之处：真香派看到了效率，焦虑派看到了岗位变化，怀疑派看到了幻觉和责任，警惕派看到了隐私与安全。可以补一句：同一个人完全可能同时属于四派。成熟的态度不是“支持或反对”，而是知道什么时候用、怎么用、谁来兜底。</div>
+</section>
+
+<!-- ============================================================ 15 ADOPTION -->
+<section class="slide">
+  <div class="xw-topline"></div>
+  <div class="xw-topbar">
+    <div class="xw-tag"><span class="dot"></span>普及程度 · 数据说话</div>
+    <div class="xw-page">15 / 16</div>
+  </div>
+
+  <h2 class="xw-title-md">已经从“新鲜事”，<span class="xw-grad">变成“日常工具”</span></h2>
+  <p class="xw-sub xw-sub-sm">用的人比想象中多，但真正把 Agent 接进工作流的人，仍然是少数。</p>
+
+  <div class="xw-stats">
+    <div class="xw-stat-main">
+      <div class="xw-stat-label">中国 · 截至 2026 年上半年</div>
+      <div class="xw-big-stat xw-grad">7 亿+<small>用户</small></div>
+      <p>生成式 AI 用户规模突破 7 亿，普及率超过 50%。<br>差不多每两个中国人里，就有一个用过。</p>
+      <div class="xw-stat-source">CNNIC《生成式人工智能应用发展报告（2026）》</div>
+    </div>
+    <div class="xw-stat-side">
+      <div class="xw-stat-label">全球 · 斯坦福 AI Index 2026</div>
+      <div class="xw-stat-53">53%</div>
+      <p>生成式 AI 在三年内达到全球人口 53% 的使用率，扩散速度超过个人电脑和互联网。</p>
+      <div class="xw-bar"><span style="width:53%"></span></div>
+      <div class="xw-bar-label"><span>0</span><span>全球人口使用率</span><span>100%</span></div>
+    </div>
+  </div>
+
+  <div class="xw-insights">
+    <div class="xw-insight"><b>人很多</b><p>AI 已经进入搜索、写作、学习和办公的日常。</p></div>
+    <div class="xw-insight"><b>用得深的人少</b><p>多数人还在问答；把 Agent 接进真实流程的仍是少数。</p></div>
+    <div class="xw-insight"><b>差距在扩大</b><p>会用的人效率更高，不会用的人更容易被信息差拉开。</p></div>
+  </div>
+
+  <div class="xw-takeaway"><span class="xw-takeaway-label">所以</span><b>真正的差距，不是有没有 AI，而是谁更会把 AI 变成流程。</b></div>
+
+  <div class="xw-footer"><span>数据来源：CNNIC 2026 · Stanford AI Index 2026</span><span>15 / 16</span></div>
+  <div class="notes">数据要讲口径：7 亿是截至 2026 年上半年的中国生成式 AI 用户规模，来自 CNNIC；53% 是斯坦福 AI Index 2026 对全球人口使用率的估计。两个数字不能直接相加或互相替代。重点不是“数字多大”，而是“普及已经发生，深度使用还有差距”。这也是普通人的机会。来源：CNNIC《生成式人工智能应用发展报告（2026）》，报道见 tech.cnr.cn/gstj/20261029/t20261029_527855983.shtml；Stanford AI Index 2026，hai.stanford.edu/ai-index。</div>
+</section>
+
+<!-- ============================================================ 16 CLOSING -->
+<section class="slide">
+  <div class="xw-topline"></div>
+  <div class="xw-topbar">
+    <div class="xw-tag"><span class="dot"></span>带走一个行动</div>
+    <div class="xw-page">16 / 16</div>
+  </div>
+
+  <h2 class="xw-title-md">别急着学所有工具，<span class="xw-grad">先交出一件小事</span></h2>
+  <p class="xw-sub xw-sub-sm">真正的入门，不是看完教程，而是让 AI 帮你完成一个真实任务。</p>
+
+  <div class="xw-start">
+    <article class="xw-start-card">
+      <div class="xw-start-num">01</div>
+      <h3>选一件小事</h3>
+      <p>重复、低风险、结果好检查。比如整理 20 个文件、做一份周报、规划一次旅行。</p>
+      <div class="xw-start-tip">别从“改变世界”开始</div>
+    </article>
+    <article class="xw-start-card">
+      <div class="xw-start-num">02</div>
+      <h3>把它讲清楚</h3>
+      <p>给目标、给材料、给边界：给谁看、要什么格式、哪些不能动、什么时候要。</p>
+      <div class="xw-start-tip">背景越清楚，结果越靠谱</div>
+    </article>
+    <article class="xw-start-card">
+      <div class="xw-start-num">03</div>
+      <h3>小步放权</h3>
+      <p>先让它交个小样；你验收；再让它做下一步。从小权限开始，别一上来就交出全部。</p>
+      <div class="xw-start-tip">验收，是你最重要的能力</div>
+    </article>
+  </div>
+
+  <div class="xw-final-quote">
+    <div class="xw-quote">AI 不会替你生活。<br>它只是把<span class="xw-focus">搬砖的时间</span>，还给你去做判断、创造和陪伴。</div>
+    <div class="xw-final-cta">现在，你想让它帮你做什么？</div>
+  </div>
+
+  <div class="xw-footer"><span>从会聊天到会干活 · 谢谢阅读</span><span>16 / 16</span></div>
+  <div class="notes">收尾不要停留在“未来已来”的口号。给观众一个今天就能做的小行动：选一件重复、低风险、可检查的小事，按“目标、材料、边界”讲清楚，先要小样再放权。最后一句可以慢一点：AI 不会替你生活，它只是把搬砖的时间还给你。</div>
+</section>
+
 </div>
 
-<nav class="nav">
-  <span class="brand"><span class="dot"></span> 云端偏爱</span>
-  <span class="nav-links">
-    <a href="#why">喜欢他</a>
-    <a href="#days">日子</a>
-    <a href="#wish">许愿</a>
-  </span>
-</nav>
+<div class="xw-nav" id="xw-nav" aria-label="翻页控制">
+  <button type="button" id="xw-prev" aria-label="上一页" title="上一页（←）">←</button>
+  <span class="xw-nav-count"><b id="xw-cur">1</b><i>/</i>16</span>
+  <button type="button" id="xw-next" aria-label="下一页" title="下一页（→）">→</button>
+</div>
 
-<main>
-  <header class="hero" id="top">
-    <p class="eyebrow">CINNAMOROLL · シナモロール</p>
-    <h1 class="title" data-parallax="14">
-      <span class="line">把一整片天空的温柔</span>
-      <span class="line accent">都写给你</span>
-    </h1>
-    <p class="lede">
-      你有一对像奶油卷一样的大耳朵，飞起来的时候，
-      整片云海都会让路。这是我写过最认真的一封情书 —— 写给一只小狗。
-    </p>
-
-    <figure class="polaroid">
-      <div class="tape"></div>
-      <div class="photo">
-        <img src="./assets/cinnamoroll.png" alt="趴在云朵上的大耳狗，笑得很开心" width="800" height="450">
-        <div class="shine"></div>
-      </div>
-      <figcaption>今天也在云上，笑得像一颗糖</figcaption>
-    </figure>
-
-    <div class="hero-actions">
-      <button class="btn primary" id="likeBtn" type="button">
-        <span class="heart-ico">♥</span> 把喜欢送上去
-      </button>
-      <span class="like-count"><b id="likeNum">—</b> 次心动，正在云端飘着</span>
-    </div>
-
-    <div class="scroll-hint" aria-hidden="true"><span></span>向下，天空还有很多</div>
-  </header>
-
-  <section class="why" id="why">
-    <h2 class="section-title">喜欢他的 <em id="reasonCount">六</em> 个理由</h2>
-    <p class="section-sub">认真写的，不是凑数。</p>
-    <div class="cards">
-      <article class="card reveal">
-        <div class="ico-wrap"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 18h10a3.5 3.5 0 0 0 .4-6.98A5 5 0 0 0 7.6 9.6 3.5 3.5 0 0 0 6.5 18Z"/></svg></div>
-        <h3>耳朵是软的</h3>
-        <p>那对垂下来的大耳朵，风吹过的时候会轻轻晃，像刚出炉的肉桂卷。</p>
-      </article>
-      <article class="card reveal">
-        <div class="ico-wrap"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 4 3.8 11.1l6.1 2.4 2.3 6.1L21 4Z"/><path d="M9.9 13.5 21 4"/></svg></div>
-        <h3>他真的会飞</h3>
-        <p>别人抬头看天，我抬头找他。云是他家，也是他带我去的远方。</p>
-      </article>
-      <article class="card reveal">
-        <div class="ico-wrap"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.2"/><path d="M9 10.3v.6M15 10.3v.6"/><path d="M9.2 14.2c.8 1.1 1.7 1.6 2.8 1.6s2-.5 2.8-1.6"/></svg></div>
-        <h3>笑起来毫无保留</h3>
-        <p>眼睛弯成两道小弧线，笑得那么用力，好像下一秒就要奔过来抱住你。</p>
-      </article>
-      <article class="card reveal">
-        <div class="ico-wrap"><svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><ellipse cx="12" cy="15.6" rx="4.6" ry="4"/><circle cx="6.6" cy="11.4" r="1.9"/><circle cx="10.2" cy="8.6" r="1.9"/><circle cx="14.4" cy="8.6" r="1.9"/><circle cx="18" cy="11.6" r="1.9"/></svg></div>
-        <h3>小小的、笨笨的</h3>
-        <p>尾巴短短一截，走路晃悠悠，却总想着替别人把麻烦扛走。</p>
-      </article>
-      <article class="card reveal">
-        <div class="ico-wrap"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z"/><path d="M17.5 4.5v2M16.5 5.5h2"/></svg></div>
-        <h3>半夜也不会缺席</h3>
-        <p>睡不着的夜里，只要想到云上还有一只在替我看星星，就没那么难熬了。</p>
-      </article>
-      <article class="card reveal">
-        <div class="ico-wrap"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7.5-4.4-7.5-9.4A4.1 4.1 0 0 1 12 8a4.1 4.1 0 0 1 7.5 2.6C19.5 15.6 12 20 12 20Z"/></svg></div>
-        <h3>他把蓝色变成了心情</h3>
-        <p>以前蓝色只是蓝色，现在是我一抬头就想笑的那种颜色。</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="days" id="days">
-    <h2 class="section-title">我们一起飘过的日子</h2>
-    <p class="section-sub">从今天起，每一天都值得记下来。</p>
-    <ol class="timeline">
-      <li class="reveal"><time>昨天</time><p>第一次认真看他笑了很久，然后决定要做一个只属于他的页面。</p></li>
-      <li class="reveal"><time>今天</time><p>把整片天都刷成了奶油蓝，装上云朵，写下这些字。</p></li>
-      <li class="reveal"><time>明天</time><p>想带他去更远的地方 —— 至少，去更多人的屏幕上。</p></li>
-      <li class="reveal"><time>很久以后</time><p>希望这个页面还在，而我还是会为了那对耳朵心动。</p></li>
-    </ol>
-  </section>
-
-  <section class="wish" id="wish">
-    <h2 class="section-title">许愿池</h2>
-    <p class="section-sub">点一下云，把话托给风。</p>
-    <div class="wish-box">
-      <button class="cloud-btn" id="cloudBtn" type="button" aria-label="点击云朵放飞心愿">
-        <svg class="cloud-svg" viewBox="0 0 240 130" aria-hidden="true">
-          <defs>
-            <linearGradient id="cg" x1="0.15" y1="0" x2="0.75" y2="1">
-              <stop offset="0" stop-color="#ffffff"/>
-              <stop offset="0.7" stop-color="#ffffff"/>
-              <stop offset="1" stop-color="#eaf5ff"/>
-            </linearGradient>
-          </defs>
-          <g fill="url(#cg)">
-            <circle cx="76" cy="78" r="33"/>
-            <circle cx="120" cy="62" r="42"/>
-            <circle cx="166" cy="78" r="31"/>
-            <rect x="42" y="72" width="158" height="42" rx="21"/>
-          </g>
-        </svg>
-        <span class="cloud-label">点我 · 放一朵云</span>
-      </button>
-      <div class="wish-meta">
-        <p class="wish-tip">已经被放飞的云：<b id="wishNum">0</b> 朵</p>
-        <p class="wish-note" id="wishNote">云会记得每一句话。</p>
-      </div>
-    </div>
-  </section>
-
-  <blockquote class="quote reveal">
-    <p>“如果温柔有形状，<br>那大概就是一只长着大耳朵、住在云上的小狗。”</p>
-  </blockquote>
-</main>
-
-<footer class="footer">
-  <div class="sign">写给大耳狗的一封信 · 2026</div>
-  <div class="foot-note">Made with 云、奶油和一点点的偏心 · <a class="foot-link" href="./national-day/">旧页面存档</a></div>
-</footer>
-
-<div class="cursor-hearts" id="cursorHearts" aria-hidden="true"></div>
-<script src="./app.js"></script>
+<script src="assets/runtime.js"></script>
+<script>
+(function(){
+  var nav = document.getElementById('xw-nav');
+  if (!nav) return;
+  if (/[?&]preview=/.test(location.search)) { nav.remove(); return; }
+  var prev = document.getElementById('xw-prev');
+  var next = document.getElementById('xw-next');
+  var cur = document.getElementById('xw-cur');
+  var deck = document.querySelector('.deck');
+  function update(){
+    var all = deck.querySelectorAll('.slide');
+    for (var i = 0; i < all.length; i++) {
+      if (all[i].classList.contains('is-active')) { cur.textContent = i + 1; break; }
+    }
+  }
+  function move(key){
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: key, bubbles: true }));
+    update();
+  }
+  prev.addEventListener('click', function(){ move('ArrowLeft'); });
+  next.addEventListener('click', function(){ move('ArrowRight'); });
+  window.addEventListener('hashchange', update);
+  new MutationObserver(update).observe(deck, { subtree: true, attributes: true, attributeFilter: ['class'] });
+  update();
+})();
+</script>
 </body>
 </html>
